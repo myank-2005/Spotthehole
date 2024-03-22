@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="index.css">
+  <title>Spothole</title>
+
+</head>
+
+<body>
+  <nav>
+    <a href="index.html"><img src="images/logo2.png"></a> 
+    <div class="nav-links">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="">All reports</a></li>
+        <li><a href="">Monthly tracking</a></li>
+        <li><a href="mailto:spothole3@gmail.com">Report a Bug</a></li>
+        <li><a href="">FAQ's</a></li>
+      </ul>
+    </div>
+    <div class="nav-log">
+      <ul>
+        <li><button><a href="signup.html">Sign Up</a></button></li>
+      </ul>
+    </div>
+
+    <form action="https://forms.pabbly.com/form/share/TeNQ-722603574" method="get">
+      <button class="get-started-btn">GET STARTED</button>
+    </form>
+
+
+
+  </nav>
+  <div class="container">
+    <div class="wrapper">
+      <img src="slider1.png">
+      <img src="slider2.png">
+      <img src="slider3.png">
+      <img src="slider4.png" 
+    </div>
+    </div>
+
+
+    <script src="index.js"></script>
+
+    <script>
+      async function checkLoginStatus() {
+        const response = await fetch('/api/isloggedin'); // Replace with your API endpoint
+        const data = await response.json();
+        if (!data.isLoggedIn) {
+          window.location.href = "login.html"; // Replace with your login page URL
+        }
+      }
+
+      checkLoginStatus(); // Call the function on page load
+    </script>
+
+
+    <div class="faq">
+      <h2>Frequently Asked Questions (FAQs)</h2>
+      <p class="faq-question">What is Spothole?</p>
+      <p>Spothole is a platform that helps users report and track road defects, making streets safer for everyone.</p>
+      <p class="faq-question">How do I report a pothole?</p>
+      <p>You can easily report a pothole through our website or mobile app. Simply provide the location details and a
+        description of the pothole.</p>
+    </div>
+
+
+</body>
+
+</html>
