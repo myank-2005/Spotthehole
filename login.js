@@ -130,7 +130,6 @@
 // app.listen(5000);
 
 // ---------------------------------------------------------------------------------------------------------------------
-
 const express = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
@@ -143,10 +142,10 @@ app.use(bodyParser.json());
 
 // MySQL Connection
 const db = mysql.createConnection({
-  host: '127.0.0.1',
-  user: 'root',
-  password: '#MYSQLPASSWORD#',
-  database: 'user'
+  host: 'localhost',
+  user: 'your_username',
+  password: 'your_password',
+  database: 'your_database_name'
 });
 
 db.connect((err) => {
@@ -156,7 +155,7 @@ db.connect((err) => {
 
 // Routes
 app.get('/', (req, res) => {
-  res.send('Welcome to the login form!');
+  res.sendFile(__dirname + '/login.html');
 });
 
 app.post('/login', (req, res) => {
@@ -169,9 +168,14 @@ app.post('/login', (req, res) => {
       res.status(500).send('Error saving user data');
     } else {
       console.log('User data saved successfully');
-      res.status(200).send('User data saved successfully');
+      // Redirect to main page after successful login
+      res.redirect('/index.html');
     }
   });
+});
+
+app.get('/main', (req, res) => {
+  res.sendFile(__dirname + '/main.html');
 });
 
 // Start server
