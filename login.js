@@ -143,9 +143,9 @@ app.use(bodyParser.json());
 // MySQL Connection
 const db = mysql.createConnection({
   host: 'localhost',
-  user: 'root',
-  password: '#MYSQLPASSWORD#',
-  database: 'users'
+  user: 'your_username',
+  password: 'your_password',
+  database: 'your_database_name'
 });
 
 db.connect((err) => {
@@ -169,7 +169,7 @@ app.post('/login', (req, res) => {
     } else {
       console.log('User data saved successfully');
       // Redirect to main page after successful login
-      res.redirect('/index.html');
+      res.redirect('/main');
     }
   });
 });
