@@ -207,6 +207,10 @@ app.post("/login", (req, res) => {
   });
 });
 
+app.get('/main', (req, res) => {
+  res.sendFile(__dirname + '/main.html');
+});
+
 // Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
