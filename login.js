@@ -142,7 +142,7 @@ app.use(bodyParser.json());
 
 // MySQL Connection
 const db = mysql.createConnection({
-  host: '127.0.0.1',
+  host: 'localhost',
   user: 'root',
   password: '#MYSQLPASSWORD#',
   database: 'users'
@@ -179,7 +179,7 @@ app.get('/main', (req, res) => {
 });
 
 // Start server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3360;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
