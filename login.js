@@ -128,3 +128,54 @@
 // });
 
 // app.listen(5000);
+
+// ---------------------------------------------------------------------------------------------------------------------
+
+const express = require('express');
+const mysql = require('mysql');
+const bodyParser = require('body-parser');
+
+const app = express();
+
+// Middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// MySQL Connection
+const db = mysql.createConnection({
+  host: '127.0.0.1',
+  user: 'root',
+  password: '#MYSQLPASSWORD#',
+  database: 'user'
+});
+
+db.connect((err) => {
+  if (err) throw err;
+  console.log('Connected to MySQL database');
+});
+
+// Routes
+app.get('/', (req, res) => {
+  res.send('Welcome to the login form!');
+});
+
+app.post('/login', (req, res) => {
+  const { username, password } = req.body;
+  const sql = `INSERT INTO users (username, password) VALUES ('${username}', '${password}')`;
+
+  db.query(sql, (err, result) => {
+    if (err) {
+      console.error('Error executing query:', err);
+      res.status(500).send('Error saving user data');
+    } else {
+      console.log('User data saved successfully');
+      res.status(200).send('User data saved successfully');
+    }
+  });
+});
+
+// Start server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
