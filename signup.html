@@ -1,24 +1,66 @@
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="signup.css">
-    </head>
-    <body>
-        <div class="form-box">
-            <form class="form">
-                <span class="title">Sign up</span>
-                <span class="subtitle">Create a free account with your email.</span>
-                <div class="form-container">
-                  <input type="text" class="input" placeholder="Full Name">
-                        <input type="email" class="input" placeholder="Email">
-                        <input type="password" class="input" placeholder="Password">
-                </div>
-                <button>Sign up</button>
-            </form>
-            <div class="form-section">
-              <p>Have an account? <a href="login.html">Log in</a> </p>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="signup.css">
+</head>
+
+<body>
+    <div class="form-box">
+        <form id="signup-form" class="form">
+            <span class="title">Sign up</span>
+            <span class="subtitle">Create a free account with your email.</span>
+            <div class="form-container">
+                <input id="fullname" type="text" class="input" placeholder="Full Name">
+                <input id="username" type="email" class="input" placeholder="Email">
+                <input id="password" type="password" class="input" placeholder="Password">
             </div>
-            </div>
-        </body>
+            <button>Sign up</button>
+        </form>
+        <div class="form-section">
+            <p>Have an account? <a href="login.html">Log in</a> </p>
+        </div>
+    </div>
+</body>
+
+<script>
+    const form = document.getElementById('signup-form')
+    const password = document.getElementById('password')
+    const fullname = document.getElementById('fullname')
+    const username = document.getElementById('username')
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault()
+        // console.log('Signup Form')
+        postData()
+    })
+
+
+    const postData = async () => {
+        const userData = {
+            fullname: fullname.value,
+            username: username.value,
+            password: password.value,
+        }
+
+        try {
+            const response = await fetch('http://localhost:3000/register', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userData)
+            })
+
+            const data = await response.json()
+            if (response.ok) {
+                console.log(data)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+</script>
 
 </html>

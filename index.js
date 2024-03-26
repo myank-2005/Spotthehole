@@ -76,4 +76,4 @@ var currentImg = 0;
   //  return Math.ceil(difference / (1000 * 3600 * 24)); // convert to days
   //}
 
-
+  
